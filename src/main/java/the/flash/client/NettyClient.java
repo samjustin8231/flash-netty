@@ -30,8 +30,13 @@ public class NettyClient {
                 .option(ChannelOption.SO_KEEPALIVE, true)
                 .option(ChannelOption.TCP_NODELAY, true)
                 .handler(new ChannelInitializer<SocketChannel>() {
+                    /**
+                     * 连接数据读写逻辑
+                     * @param ch
+                     */
                     @Override
                     public void initChannel(SocketChannel ch) {
+                        // ch.pipeline() 返回的是和这条连接相关的逻辑处理链，采用了责任链模式
                         ch.pipeline().addLast(new FirstClientHandler());
                     }
                 });
