@@ -5,6 +5,9 @@ import the.flash.protocol.Packet;
 
 import static the.flash.protocol.command.Command.LOGIN_REQUEST;
 
+/**
+ * 登录指令
+ */
 @Data
 public class LoginRequestPacket extends Packet {
     private String userId;

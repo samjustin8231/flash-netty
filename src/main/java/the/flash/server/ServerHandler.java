@@ -51,6 +51,7 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
             System.out.println(new Date() + ": 收到客户端消息: " + messageRequestPacket.getMessage());
             messageResponsePacket.setMessage("服务端回复【" + messageRequestPacket.getMessage() + "】");
             ByteBuf responseByteBuf = PacketCodeC.INSTANCE.encode(ctx.alloc(), messageResponsePacket);
+            System.out.println(new Date() + ": 服务端恢复【: " + messageRequestPacket.getMessage() + "】");
             ctx.channel().writeAndFlush(responseByteBuf);
         }
     }

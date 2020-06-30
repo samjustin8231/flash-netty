@@ -5,6 +5,9 @@ import the.flash.protocol.Packet;
 
 import static the.flash.protocol.command.Command.MESSAGE_REQUEST;
 
+/**
+ * 消息指令
+ */
 @Data
 public class MessageRequestPacket extends Packet {
 
