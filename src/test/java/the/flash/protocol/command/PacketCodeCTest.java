@@ -19,7 +19,9 @@ public class PacketCodeCTest {
         loginRequestPacket.setPassword("password");
 
         PacketCodeC packetCodeC = new PacketCodeC();
+        // 先编码
         ByteBuf byteBuf = packetCodeC.encode(loginRequestPacket);
+        // 再解码
         Packet decodedPacket = packetCodeC.decode(byteBuf);
 
         Assert.assertArrayEquals(serializer.serialize(loginRequestPacket), serializer.serialize(decodedPacket));
