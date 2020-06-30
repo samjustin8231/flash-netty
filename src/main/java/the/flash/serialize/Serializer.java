@@ -2,12 +2,19 @@ package the.flash.serialize;
 
 import the.flash.serialize.impl.JSONSerializer;
 
+/**
+ * 序列化接口
+ */
 public interface Serializer {
 
+    /**
+     * 默认序列化方法：json序列化
+     */
     Serializer DEFAULT = new JSONSerializer();
 
     /**
      * 序列化算法
+     *
      * @return
      */
     byte getSerializerAlogrithm();
