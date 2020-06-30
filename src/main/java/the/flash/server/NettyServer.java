@@ -32,12 +32,16 @@ public class NettyServer {
                 .childOption(ChannelOption.TCP_NODELAY, true)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     protected void initChannel(NioSocketChannel ch) {
+                        // inBoundHandler 的事件通常只会传播到下一个 inBoundHandler，outBoundHandler 的事件通常只会传播到下一个 outBoundHandler，两者相互不受干扰
+
                         // inBound，处理读数据的逻辑链
+                        // inBoundHandler 的执行顺序与我们通过 addLast() 方法 添加的顺序保持一致
                         ch.pipeline().addLast(new InBoundHandlerA());
                         ch.pipeline().addLast(new InBoundHandlerB());
                         ch.pipeline().addLast(new InBoundHandlerC());
 
                         // outBound，处理写数据的逻辑链
+                        // outBoundHandler 的执行顺序与我们添加的顺序相反
                         ch.pipeline().addLast(new OutBoundHandlerA());
                         ch.pipeline().addLast(new OutBoundHandlerB());
                         ch.pipeline().addLast(new OutBoundHandlerC());
