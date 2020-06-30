@@ -25,6 +25,7 @@ public class NettyServer {
                 .childOption(ChannelOption.SO_KEEPALIVE, true)
                 .childOption(ChannelOption.TCP_NODELAY, true)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
+                    // 客户端连接成功后回调该方法
                     protected void initChannel(NioSocketChannel ch) {
                         ch.pipeline().addLast(new ServerHandler());
                     }

@@ -17,11 +17,19 @@ import java.util.Date;
  */
 public class ServerHandler extends ChannelInboundHandlerAdapter {
 
+    /**
+     * 接收到客户端数据后回调
+     *
+     * @param ctx
+     * @param msg
+     */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         System.out.println(new Date() + ": 客户端开始登录……");
+        // 转为ByteBuf
         ByteBuf requestByteBuf = (ByteBuf) msg;
 
+        // 解码
         Packet packet = PacketCodeC.INSTANCE.decode(requestByteBuf);
 
         if (packet instanceof LoginRequestPacket) {
@@ -44,6 +52,12 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
         }
     }
 
+    /**
+     * 验证登录逻辑
+     *
+     * @param loginRequestPacket
+     * @return
+     */
     private boolean valid(LoginRequestPacket loginRequestPacket) {
         return true;
     }

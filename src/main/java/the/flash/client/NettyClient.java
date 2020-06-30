@@ -30,6 +30,7 @@ public class NettyClient {
                 .option(ChannelOption.SO_KEEPALIVE, true)
                 .option(ChannelOption.TCP_NODELAY, true)
                 .handler(new ChannelInitializer<SocketChannel>() {
+                    // 连接成功后回调该方法
                     @Override
                     public void initChannel(SocketChannel ch) {
                         ch.pipeline().addLast(new ClientHandler());
