@@ -4,6 +4,9 @@ import com.alibaba.fastjson.JSON;
 import the.flash.serialize.Serializer;
 import the.flash.serialize.SerializerAlogrithm;
 
+/**
+ * Json序列化方法
+ */
 public class JSONSerializer implements Serializer {
 
     @Override
