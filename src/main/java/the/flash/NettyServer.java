@@ -36,12 +36,21 @@ public class NettyServer {
         bind(serverBootstrap, BEGIN_PORT);
     }
 
+    /**
+     * 绑定端口
+     *
+     * @param serverBootstrap
+     * @param port
+     */
     private static void bind(final ServerBootstrap serverBootstrap, final int port) {
+        // 绑定端口
         serverBootstrap.bind(port).addListener(future -> {
+            // 绑定端口回调
             if (future.isSuccess()) {
                 System.out.println("端口[" + port + "]绑定成功!");
             } else {
                 System.err.println("端口[" + port + "]绑定失败!");
+                // 绑定失败继续绑定下一个端口
                 bind(serverBootstrap, port + 1);
             }
         });
