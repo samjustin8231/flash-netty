@@ -3,8 +3,10 @@ package the.flash.server.handler;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import lombok.extern.slf4j.Slf4j;
 import the.flash.protocol.request.HeartBeatRequestPacket;
 import the.flash.protocol.response.HeartBeatResponsePacket;
+import the.flash.util.SessionUtil;
 
 @ChannelHandler.Sharable
 public class HeartBeatRequestHandler extends SimpleChannelInboundHandler<HeartBeatRequestPacket> {
@@ -16,6 +18,7 @@ public class HeartBeatRequestHandler extends SimpleChannelInboundHandler<HeartBe
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, HeartBeatRequestPacket requestPacket) {
+        System.out.println("====> 心跳响应, userId:" + SessionUtil.getSession(ctx.channel()).getUserId());
         ctx.writeAndFlush(new HeartBeatResponsePacket());
     }
 }

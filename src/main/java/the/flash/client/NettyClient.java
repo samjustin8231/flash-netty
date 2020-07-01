@@ -43,7 +43,7 @@ public class NettyClient {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     public void initChannel(SocketChannel ch) {
-                        // 空闲检测
+                        // 空闲检测, 空闲检测需要放到最先面
                         ch.pipeline().addLast(new IMIdleStateHandler());
 
                         ch.pipeline().addLast(new Spliter());
