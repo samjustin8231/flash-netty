@@ -30,9 +30,13 @@ public class NettyServer {
                 .childOption(ChannelOption.TCP_NODELAY, true)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     protected void initChannel(NioSocketChannel ch) {
+                        // 添加解码器
                         ch.pipeline().addLast(new PacketDecoder());
+                        // 添加登录请求处理器
                         ch.pipeline().addLast(new LoginRequestHandler());
+                        // 添加消息请求处理器
                         ch.pipeline().addLast(new MessageRequestHandler());
+                        // 添加编码器
                         ch.pipeline().addLast(new PacketEncoder());
                     }
                 });

@@ -6,6 +6,9 @@ import io.netty.handler.codec.MessageToByteEncoder;
 import the.flash.protocol.Packet;
 import the.flash.protocol.PacketCodeC;
 
+/**
+ * 编码器
+ */
 public class PacketEncoder extends MessageToByteEncoder<Packet> {
 
     @Override

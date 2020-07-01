@@ -41,9 +41,13 @@ public class NettyClient {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     public void initChannel(SocketChannel ch) {
+                        // 添加解码器
                         ch.pipeline().addLast(new PacketDecoder());
+                        // 添加登录响应处理器
                         ch.pipeline().addLast(new LoginResponseHandler());
+                        // 添加消息响应处理器
                         ch.pipeline().addLast(new MessageResponseHandler());
+                        // 添加编码器
                         ch.pipeline().addLast(new PacketEncoder());
                     }
                 });
