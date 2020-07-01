@@ -31,7 +31,13 @@ public class NettyServer {
                 .childOption(ChannelOption.SO_KEEPALIVE, true)
                 .childOption(ChannelOption.TCP_NODELAY, true)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
+
+                    /**
+                     * channel生命周期channelRegistered() 与 handlerAdded() 会调用initChannel()
+                     * @param ch
+                     */
                     protected void initChannel(NioSocketChannel ch) {
+                        // 往 pipeline 里面塞我们的 handler 链
                         ch.pipeline().addLast(new Spliter());
                         ch.pipeline().addLast(new LifeCyCleTestHandler());
                         ch.pipeline().addLast(new PacketDecoder());
