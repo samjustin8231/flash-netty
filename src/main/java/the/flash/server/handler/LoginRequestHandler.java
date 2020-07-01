@@ -44,6 +44,7 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
+        // 用户断线之后取消绑定
         SessionUtil.unBindSession(ctx.channel());
     }
 }

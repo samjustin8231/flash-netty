@@ -8,6 +8,9 @@ import the.flash.protocol.response.MessageResponsePacket;
 import the.flash.session.Session;
 import the.flash.util.SessionUtil;
 
+/**
+ * 聊天请求handler
+ */
 public class MessageRequestHandler extends SimpleChannelInboundHandler<MessageRequestPacket> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, MessageRequestPacket messageRequestPacket) {

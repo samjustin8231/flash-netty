@@ -3,6 +3,9 @@ package the.flash.session;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 用户session
+ */
 @Data
 @NoArgsConstructor
 public class Session {
