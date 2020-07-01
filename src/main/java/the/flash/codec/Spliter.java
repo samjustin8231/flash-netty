@@ -5,6 +5,9 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import the.flash.protocol.PacketCodec;
 
+/**
+ * 拆包器，每个 Spliter 需要维持每个 channel 当前读到的数据，也就是说他是有状态的
+ */
 public class Spliter extends LengthFieldBasedFrameDecoder {
     private static final int LENGTH_FIELD_OFFSET = 7;
     private static final int LENGTH_FIELD_LENGTH = 4;

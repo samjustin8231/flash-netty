@@ -8,6 +8,10 @@ import the.flash.protocol.request.GroupMessageRequestPacket;
 import the.flash.protocol.response.GroupMessageResponsePacket;
 import the.flash.util.SessionUtil;
 
+/**
+ * 群消息请求处理器
+ */
+// 1. 加上注解标识，表明该 handler 是可以多个 channel 共享的
 @ChannelHandler.Sharable
 public class GroupMessageRequestHandler extends SimpleChannelInboundHandler<GroupMessageRequestPacket> {
     public static final GroupMessageRequestHandler INSTANCE = new GroupMessageRequestHandler();

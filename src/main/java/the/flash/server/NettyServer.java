@@ -30,6 +30,8 @@ public class NettyServer {
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     protected void initChannel(NioSocketChannel ch) {
                         ch.pipeline().addLast(new Spliter());
+                        // ...单例模式，多个 channel 共享同一个 handler
+                        // 每来一次新的连接，添加 handler 的时候就不需要每次都 new 了
                         ch.pipeline().addLast(PacketCodecHandler.INSTANCE);
                         ch.pipeline().addLast(LoginRequestHandler.INSTANCE);
                         ch.pipeline().addLast(AuthHandler.INSTANCE);

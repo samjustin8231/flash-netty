@@ -21,7 +21,6 @@ public class MessageRequestHandler extends SimpleChannelInboundHandler<MessageRe
     protected void channelRead0(ChannelHandlerContext ctx, MessageRequestPacket messageRequestPacket) {
         long begin = System.currentTimeMillis();
 
-
         // 1.拿到消息发送方的会话信息
         Session session = SessionUtil.getSession(ctx.channel());
 
@@ -36,9 +35,12 @@ public class MessageRequestHandler extends SimpleChannelInboundHandler<MessageRe
 
         // 4.将消息发送给消息接收方
         if (toUserChannel != null && SessionUtil.hasLogin(toUserChannel)) {
+            // ctx.writeAndFlush() 是从 pipeline 链中的当前节点开始往前找到第一个 outBound 类型的 handler 把对象往前进行传播
+            // ctx.channel().writeAndFlush() 是从 pipeline 链中的最后一个 outBound 类型的 handler 开始，把对象往前进行传播
             toUserChannel.writeAndFlush(messageResponsePacket).addListener(future -> {
                 if (future.isDone()) {
-
+                    long time = System.currentTimeMillis() - begin;
+                    System.out.println("======> writeAndFlush, cost:" + time);
                 }
 
             });

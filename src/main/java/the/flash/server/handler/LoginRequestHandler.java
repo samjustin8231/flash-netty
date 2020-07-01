@@ -11,9 +11,10 @@ import the.flash.util.SessionUtil;
 
 import java.util.Date;
 
+// 1. 加上注解标识，表明该 handler 是可以多个 channel 共享的
 @ChannelHandler.Sharable
 public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginRequestPacket> {
-
+    // 2. 构造单例
     public static final LoginRequestHandler INSTANCE = new LoginRequestHandler();
 
     protected LoginRequestHandler() {
@@ -38,6 +39,8 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
         }
 
         // 登录响应
+        // ctx.writeAndFlush() 是从 pipeline 链中的当前节点开始往前找到第一个 outBound 类型的 handler 把对象往前进行传播
+        // ctx.channel().writeAndFlush() 是从 pipeline 链中的最后一个 outBound 类型的 handler 开始，把对象往前进行传播
         ctx.writeAndFlush(loginResponsePacket);
     }
 
