@@ -14,6 +14,14 @@ import java.util.Date;
  */
 public class FirstServerHandler extends ChannelInboundHandlerAdapter {
 
+    /**
+     * 一种是正常的字符串输出。
+     * 一种是多个字符串“粘”在了一起，我们定义这种 ByteBuf 为粘包。
+     * 一种是一个字符串被“拆”开，形成一个破碎的包，我们定义这种 ByteBuf 为半包。
+     *
+     * @param ctx
+     * @param msg
+     */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         ByteBuf byteBuf = (ByteBuf) msg;

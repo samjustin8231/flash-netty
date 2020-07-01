@@ -8,6 +8,7 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import the.flash.client.handler.FirstClientHandler;
 import the.flash.client.handler.LoginResponseHandler;
 import the.flash.client.handler.MessageResponseHandler;
 import the.flash.codec.PacketDecoder;
@@ -43,7 +44,7 @@ public class NettyClient {
                     @Override
                     public void initChannel(SocketChannel ch) {
 //                        ch.pipeline().addLast(new FirstClientHandler());
-                        ch.pipeline().addLast(new Spliter());
+                        ch.pipeline().addLast(new Spliter()); // 添加拆包器
                         ch.pipeline().addLast(new PacketDecoder());
                         ch.pipeline().addLast(new LoginResponseHandler());
                         ch.pipeline().addLast(new MessageResponseHandler());

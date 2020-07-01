@@ -9,6 +9,10 @@ import the.flash.util.LoginUtil;
 import java.util.Date;
 import java.util.UUID;
 
+/**
+ * 登录处理类
+ * SimpleChannelInboundHandler
+ */
 public class LoginResponseHandler extends SimpleChannelInboundHandler<LoginResponsePacket> {
 
     @Override
