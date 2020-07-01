@@ -49,8 +49,8 @@ public class NettyClient {
                         ch.pipeline().addLast(new PacketDecoder());
                         ch.pipeline().addLast(new LoginResponseHandler());
                         ch.pipeline().addLast(new LogoutResponseHandler());
-                        ch.pipeline().addLast(new MessageResponseHandler());
-                        ch.pipeline().addLast(new CreateGroupResponseHandler());
+                        ch.pipeline().addLast(new MessageResponseHandler()); // 消息响应处理器
+                        ch.pipeline().addLast(new CreateGroupResponseHandler()); // 创建群组响应处理器
                         ch.pipeline().addLast(new PacketEncoder());
                     }
                 });

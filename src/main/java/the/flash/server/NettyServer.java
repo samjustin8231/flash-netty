@@ -30,14 +30,14 @@ public class NettyServer {
                 .childOption(ChannelOption.TCP_NODELAY, true)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     protected void initChannel(NioSocketChannel ch) {
-                        ch.pipeline().addLast(new Spliter());
-                        ch.pipeline().addLast(new PacketDecoder());
-                        ch.pipeline().addLast(new LoginRequestHandler());
-                        ch.pipeline().addLast(new AuthHandler());
-                        ch.pipeline().addLast(new MessageRequestHandler());
-                        ch.pipeline().addLast(new CreateGroupRequestHandler());
-                        ch.pipeline().addLast(new LogoutRequestHandler());
-                        ch.pipeline().addLast(new PacketEncoder());
+                        ch.pipeline().addLast(new Spliter()); // 拆包器
+                        ch.pipeline().addLast(new PacketDecoder()); // 解码器
+                        ch.pipeline().addLast(new LoginRequestHandler()); // 登录处理器
+                        ch.pipeline().addLast(new AuthHandler()); // 权限认证处理器
+                        ch.pipeline().addLast(new MessageRequestHandler()); // 消息处理器
+                        ch.pipeline().addLast(new CreateGroupRequestHandler()); // 建群处理器
+                        ch.pipeline().addLast(new LogoutRequestHandler()); // 退出处理器
+                        ch.pipeline().addLast(new PacketEncoder()); // 编码器
                     }
                 });
 

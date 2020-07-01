@@ -5,6 +5,9 @@ import the.flash.protocol.request.LoginRequestPacket;
 
 import java.util.Scanner;
 
+/**
+ * 控制台登录命令
+ */
 public class LoginConsoleCommand implements ConsoleCommand {
 
     @Override

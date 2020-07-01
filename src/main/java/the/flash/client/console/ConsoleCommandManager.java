@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * 命令Manager
+ */
 public class ConsoleCommandManager implements ConsoleCommand {
     private Map<String, ConsoleCommand> consoleCommandMap;
 

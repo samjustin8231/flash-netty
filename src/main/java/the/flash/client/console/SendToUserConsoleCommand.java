@@ -5,6 +5,9 @@ import the.flash.protocol.request.MessageRequestPacket;
 
 import java.util.Scanner;
 
+/**
+ * 给指定用户发消息命令
+ */
 public class SendToUserConsoleCommand implements ConsoleCommand {
     @Override
     public void exec(Scanner scanner, Channel channel) {
