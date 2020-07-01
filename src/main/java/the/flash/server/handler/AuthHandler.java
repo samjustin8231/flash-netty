@@ -8,9 +8,12 @@ public class AuthHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        // 如果未登录，直接强制关闭连接
         if (!LoginUtil.hasLogin(ctx.channel())) {
             ctx.channel().close();
         } else {
+            // 登录成功了，则移除authHandler
+            // 就把读到的数据向下传递，传递给后续指令处理器
             ctx.pipeline().remove(this);
             super.channelRead(ctx, msg);
         }
