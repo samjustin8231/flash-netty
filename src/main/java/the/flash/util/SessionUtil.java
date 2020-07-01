@@ -46,6 +46,12 @@ public class SessionUtil {
         groupIdChannelGroupMap.put(groupId, channelGroup);
     }
 
+    /**
+     * 根据groupId获取群组的channelGroup
+     *
+     * @param groupId
+     * @return
+     */
     public static ChannelGroup getChannelGroup(String groupId) {
         return groupIdChannelGroupMap.get(groupId);
     }
